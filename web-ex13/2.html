@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Dynamic Fruit List</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      // React component that renders a list of fruits dynamically
+      function FruitList() {
+        const fruits = ["Mango", "Apple", "Banana", "Guava"]; // Array of fruits
+
+        return (
+          <div>
+            <h1>Fruit List</h1>
+            <ul>
+              {fruits.map((fruit, index) => (
+                <li key={index}>{fruit}</li>  // Render each fruit in a list item
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      // Render the FruitList component inside the #root div
+      ReactDOM.render(<FruitList />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

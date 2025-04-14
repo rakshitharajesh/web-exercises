@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13.1iii - Rakshitha - 23BCE1252 - React without JSX</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      // React component using JSX and a variable to display a message
+      function Welcome() {
+        const message = "Hello, React from variable.";
+
+        return (
+          <div>
+            <h1>{message}</h1>  {/* Using JSX curly braces to display the variable */}
+          </div>
+        );
+      }
+
+      // Render the component inside the #root div
+      ReactDOM.render(<Welcome />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

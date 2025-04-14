@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Day of the Week Example</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      function DayOfWeek() {
+        // JavaScript to get the current day of the week
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const currentDay = days[new Date().getDay()]; // Get current day index (0 = Sunday, 1 = Monday, etc.)
+
+        return (
+          <div>
+            <h1>Today is: {currentDay}</h1>
+          </div>
+        );
+      }
+
+      // Render the DayOfWeek component inside the #root div
+      ReactDOM.render(<DayOfWeek />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

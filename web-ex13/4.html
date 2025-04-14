@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Sum of Squares</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- React Component with JSX -->
+    <script type="text/babel">
+      function SumOfSquares() {
+        const num1 = 2;  // First number
+        const num2 = 5;  // Second number
+
+        const sumOfSquares = (num1 ** 2) + (num2 ** 2);  // Calculate sum of squares
+
+        return (
+          <div>
+            <h1>Sum of Squares</h1>
+            <p>The sum of squares of {num1} and {num2} is: {sumOfSquares}</p>
+          </div>
+        );
+      }
+
+      // Render the component into the DOM
+      ReactDOM.render(<SumOfSquares />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

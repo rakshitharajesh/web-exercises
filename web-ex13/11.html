@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leap Year Checker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class LeapYearChecker extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            year: '',
+            isLeapYear: null,
+          };
+        }
+
+        // Function to check if a year is a leap year
+        checkLeapYear = (year) => {
+          if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+            return true;
+          }
+          return false;
+        };
+
+        handleInputChange = (e) => {
+          const inputYear = parseInt(e.target.value, 10);
+          const isLeap = this.checkLeapYear(inputYear);
+          this.setState({
+            year: inputYear,
+            isLeapYear: isNaN(inputYear) ? null : isLeap,
+          });
+        };
+
+        render() {
+          const { year, isLeapYear } = this.state;
+
+          return (
+            <div>
+              <h1>Leap Year Checker</h1>
+              <input
+                type="number"
+                placeholder="Enter a year (e.g., 2024)"
+                onChange={this.handleInputChange}
+              />
+              {isLeapYear !== null && (
+                <p>
+                  {year} is {isLeapYear ? 'a Leap Year!' : 'not a Leap Year.'}
+                </p>
+              )}
+            </div>
+          );
+        }
+      }
+
+      // Render the LeapYearChecker component
+      ReactDOM.render(<LeapYearChecker />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

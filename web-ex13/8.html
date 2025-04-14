@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Temperature Converter</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class TemperatureConverter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            temperature: '',
+            scale: 'celsius', // Either 'celsius' or 'fahrenheit'
+            convertedTemperature: ''
+          };
+        }
+
+        // Convert Celsius to Fahrenheit
+        celsiusToFahrenheit(celsius) {
+          return (celsius * 9) / 5 + 32;
+        }
+
+        // Convert Fahrenheit to Celsius
+        fahrenheitToCelsius(fahrenheit) {
+          return ((fahrenheit - 32) * 5) / 9;
+        }
+
+        handleTemperatureChange = (e) => {
+          this.setState({ temperature: e.target.value });
+        };
+
+        handleScaleChange = (e) => {
+          this.setState({ scale: e.target.value });
+        };
+
+        handleConversion = (e) => {
+          e.preventDefault();
+          const { temperature, scale } = this.state;
+
+          if (isNaN(parseFloat(temperature))) {
+            this.setState({ convertedTemperature: 'Please enter a valid number.' });
+            return;
+          }
+
+          const convertedTemperature =
+            scale === 'celsius'
+              ? this.celsiusToFahrenheit(parseFloat(temperature))
+              : this.fahrenheitToCelsius(parseFloat(temperature));
+
+          this.setState({ convertedTemperature: `${convertedTemperature.toFixed(2)}°` });
+        };
+
+        render() {
+          const { temperature, scale, convertedTemperature } = this.state;
+
+          return (
+            <div>
+              <h1>Temperature Converter</h1>
+              <form onSubmit={this.handleConversion}>
+                <label>
+                  Enter Temperature:
+                  <input
+                    type="number"
+                    value={temperature}
+                    onChange={this.handleTemperatureChange}
+                    placeholder="Enter a number"
+                  />
+                </label>
+
+                <div>
+                  <label>
+                    Select Scale:
+                    <select value={scale} onChange={this.handleScaleChange}>
+                      <option value="celsius">Celsius to Fahrenheit</option>
+                      <option value="fahrenheit">Fahrenheit to Celsius</option>
+                    </select>
+                  </label>
+                </div>
+
+                <button type="submit">Convert</button>
+              </form>
+
+              {convertedTemperature && <p>Converted Temperature: {convertedTemperature}</p>}
+            </div>
+          );
+        }
+      }
+
+      // Render the TemperatureConverter component
+      ReactDOM.render(<TemperatureConverter />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

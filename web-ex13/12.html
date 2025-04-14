@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Greeting with Forms</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class UserGreeting extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            firstName: '',
+            lastName: '',
+            fullName: '',
+          };
+        }
+
+        handleFirstNameChange = (event) => {
+          this.setState({ firstName: event.target.value });
+        };
+
+        handleLastNameChange = (event) => {
+          this.setState({ lastName: event.target.value });
+        };
+
+        handleGreet = () => {
+          const { firstName, lastName } = this.state;
+          if (firstName && lastName) {
+            this.setState({ fullName: `Hello, ${firstName} ${lastName}!` });
+          } else {
+            this.setState({ fullName: 'Please enter both first and last name.' });
+          }
+        };
+
+        render() {
+          const { fullName } = this.state;
+
+          return (
+            <div>
+              <h1>User Greeting Form</h1>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Enter First Name"
+                  onChange={this.handleFirstNameChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Enter Last Name"
+                  onChange={this.handleLastNameChange}
+                />
+              </div>
+              <button onClick={this.handleGreet}>Greet User</button>
+              {fullName && <h2>{fullName}</h2>}
+            </div>
+          );
+        }
+      }
+
+      // Render the UserGreeting component
+      ReactDOM.render(<UserGreeting />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

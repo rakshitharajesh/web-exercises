@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Conditional Rendering Example</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- React Script with Babel -->
+    <script type="text/babel">
+      function Greeting() {
+        const isMorning = true; // Change this to false to test "Good Evening"
+		const d = new Date();
+		var h = d.getHours();
+		var msg = h >= 12 ? "Good Evening" : "Good Morning";
+
+        return (
+          <div>
+            <h1>{msg}</h1>
+          </div>
+        );
+      }
+
+      // Render the component inside the #root div
+      ReactDOM.render(<Greeting />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

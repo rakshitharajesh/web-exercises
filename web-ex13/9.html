@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React String Reversal and Palindrome Checker</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class StringReversalPalindromeChecker extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            inputString: '',
+            reversedString: '',
+            isPalindrome: false,
+            resultMessage: '',
+          };
+        }
+
+        // Function to reverse a string
+        reverseString = (str) => str.split('').reverse().join('');
+
+        // Handle input change and check palindrome status
+        handleChange = (e) => {
+          const inputString = e.target.value;
+          const reversedString = this.reverseString(inputString);
+          const isPalindrome = inputString === reversedString && inputString.length > 0;
+          const resultMessage = isPalindrome ? 'The string is a palindrome!' : 'The string is not a palindrome.';
+
+          this.setState({
+            inputString,
+            reversedString,
+            isPalindrome,
+            resultMessage,
+          });
+        };
+
+        render() {
+          const { inputString, reversedString, resultMessage } = this.state;
+
+          return (
+            <div>
+              <h1>String Reversal and Palindrome Checker</h1>
+              <input
+                type="text"
+                value={inputString}
+                onChange={this.handleChange}
+                placeholder="Enter a string"
+              />
+              <p>Reversed String: {reversedString}</p>
+              <p>{resultMessage}</p>
+            </div>
+          );
+        }
+      }
+
+      // Render the component
+      ReactDOM.render(<StringReversalPalindromeChecker />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

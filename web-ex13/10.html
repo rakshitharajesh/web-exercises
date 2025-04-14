@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Random Number Generator</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class RandomNumberGenerator extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            randomNumber: null,
+          };
+        }
+
+        generateRandomNumber = () => {
+          const randomNum = Math.floor(Math.random() * 100) + 1; // Generate number between 1 and 100
+          this.setState({ randomNumber: randomNum });
+        };
+
+        render() {
+          return (
+            <div>
+              <h1>Random Number Generator</h1>
+              <button onClick={this.generateRandomNumber}>Generate Random Number</button>
+              {this.state.randomNumber !== null && (
+                <p>Random Number: {this.state.randomNumber}</p>
+              )}
+            </div>
+          );
+        }
+      }
+
+      // Render the RandomNumberGenerator component
+      ReactDOM.render(<RandomNumberGenerator />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

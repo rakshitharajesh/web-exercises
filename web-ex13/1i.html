@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>13.1i - Rakshitha - 23BCE1252 - React without JSX</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React and ReactDOM via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script>
+      // Create a React component WITHOUT JSX
+      function Welcome() {
+        return React.createElement(
+          'div',
+          null,
+          React.createElement('h1', null, 'Hello, React!'),
+          // React.createElement('p', null, 'This is a React component without JSX.')
+        );
+      }
+
+      // Render the React component inside the #root div
+      ReactDOM.render(
+        React.createElement(Welcome),
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
