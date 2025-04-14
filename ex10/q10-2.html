@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Selection Methods Example</title>
+  <style>
+    .input-field {
+      padding: 5px;
+      border: 1px solid #ccc;
+      margin: 5px;
+    }
+    .hobby {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Original Title</h1>
+  <div>
+    <label>Username: </label>
+    <input type="text" name="username" class="input-field" placeholder="Enter username">
+  </div>
+  <div>
+    <label>Gender: </label>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+  </div>
+  <div>
+    <p>This is paragraph 1.</p>
+    <p class="info">This is info paragraph 1.</p>
+    <p>This is paragraph 3.</p>
+    <p class="info">This is info paragraph 2.</p>
+  </div>
+  <ul>
+    <li>List item 1</li>
+    <li>List item 2</li>
+    <li>List item 3</li>
+  </ul>
+  <div class="input-field">Div with class input-field 1</div>
+  <div class="input-field">Div with class input-field 2</div>
+  <div>
+    <input type="checkbox" class="hobby" value="Reading"> Reading
+    <input type="checkbox" class="hobby" value="Gaming"> Gaming
+    <input type="checkbox" class="hobby" value="Cooking"> Cooking
+  </div>
+  <script>
+    document.getElementById("title").textContent = "Updated Title";
+    var usernameField = document.getElementsByName("username")[0];
+    usernameField.value = "John Doe";
+    var radioButtons = document.getElementsByName("gender");
+    var selectedGender = "";
+    for (var i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        selectedGender = radioButtons[i].value;
+        break;
+      }
+    }
+    console.log("Selected gender (before programmatic check):", selectedGender || "None");
+    var pElements = document.getElementsByTagName("p");
+    console.log("Total number of <p> elements:", pElements.length);
+    var ulElement = document.getElementsByTagName("ul")[0];
+    var liElements = ulElement.getElementsByTagName("li");
+    for (var i = 0; i < liElements.length; i++) {
+      console.log("List item " + (i + 1) + ":", liElements[i].textContent);
+    }
+    var inputFields = document.getElementsByClassName("input-field");
+    for (var i = 0; i < inputFields.length; i++) {
+      inputFields[i].style.backgroundColor = "lightblue";
+    }
+    var firstInfoParagraph = document.querySelector("p.info");
+    if (firstInfoParagraph) {
+      firstInfoParagraph.textContent = "This is the first info paragraph";
+    }
+    var firstRadio = document.querySelector("input[name='gender']");
+    if (firstRadio) {
+      firstRadio.checked = true;
+    }
+    var allInfoParagraphs = document.querySelectorAll("p.info");
+    allInfoParagraphs.forEach(function(paragraph, index) {
+      console.log("Info paragraph " + (index + 1) + ":", paragraph.textContent);
+    });
+    var hobbyCheckboxes = document.querySelectorAll("input.hobby[type='checkbox']");
+    hobbyCheckboxes.forEach(function(checkbox) {
+      checkbox.checked = true;
+      console.log("Checkbox with value '" + checkbox.value + "' is checked:", checkbox.checked);
+    });
+  </script>
+</body>
+</html>

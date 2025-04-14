@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Order Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #9E9F74;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: #6C6D48;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .receipt {
+      margin-top: 20px;
+    }
+    .item-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Order Receipt</h1>
+    <div id="receipt" class="receipt"></div>
+  </div>
+
+  <script>
+    // Parse query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Extract values (default to 0 if missing)
+    const customerName = urlParams.get("customerName") || "Unknown";
+    const phoneNumber = urlParams.get("phoneNumber") || "N/A";
+    const email = urlParams.get("email") || "N/A";
+    const appleQty = parseInt(urlParams.get("appleQty")) || 0;
+    const bananaQty = parseInt(urlParams.get("bananaQty")) || 0;
+    const avocadoQty = parseInt(urlParams.get("avocadoQty")) || 0;
+
+    // Product prices
+    const applePrice = 10;
+    const bananaPrice = 5;
+    const avocadoPrice = 7;
+
+    // Calculate costs
+    const appleCost = appleQty * applePrice;
+    const bananaCost = bananaQty * bananaPrice;
+    const avocadoCost = avocadoQty * avocadoPrice;
+    const totalCost = appleCost + bananaCost + avocadoCost;
+
+    // Build the receipt HTML
+    const receiptDiv = document.getElementById("receipt");
+    let receiptHTML = `
+      <p><strong>Customer Name:</strong> ${customerName}</p>
+      <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <hr>
+      <div class="item-line"><span>Apple (₹${applePrice} x ${appleQty} kg)</span> <span>₹${appleCost}</span></div>
+      <div class="item-line"><span>Banana (₹${bananaPrice} x ${bananaQty} kg)</span> <span>₹${bananaCost}</span></div>
+      <div class="item-line"><span>Avocado (₹${avocadoPrice} x ${avocadoQty} kg)</span> <span>₹${avocadoCost}</span></div>
+      <hr>
+      <div class="total">Total: ₹${totalCost}</div>
+    `;
+    receiptDiv.innerHTML = receiptHTML;
+  </script>
+</body>
+</html>
