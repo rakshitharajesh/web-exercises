@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .profile-container {
+        text-align: center;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+      }
+
+      h2, h3 {
+        margin-top: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Include React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      // ProfileImage Component
+      function ProfileImage() {
+        return (
+          <div>
+            <img
+              src="c:/web-ex14/public/images/sample-image.jpg"
+              alt="Profile"
+            />
+          </div>
+        );
+      }
+
+      // UserInfo Component
+      function UserInfo() {
+        const userInfo = {
+          name: "Abinav Bindra",
+          email: "AbhinavBindra@example.com",
+          bio: "Sports, Shooting, and avid traveler.",
+        };
+
+        return (
+          <div>
+            <h2>{userInfo.name}</h2>
+            <p>Email: {userInfo.email}</p>
+            <p>Bio: {userInfo.bio}</p>
+          </div>
+        );
+      }
+
+      // UserPosts Component
+      function UserPosts() {
+        const posts = [
+		  "Just completed freestyle shooting",
+          "Excited to explore new championship challenges",
+          "Aiming for Olympics",
+        ];
+
+        return (
+          <div>
+            <h3>My Posts:</h3>
+            <ul>
+              {posts.map((post, index) => (
+                <li key={index}>{post}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      // ProfilePage Component
+      function ProfilePage() {
+        return (
+          <div className="profile-container">
+            <ProfileImage />
+            <UserInfo />
+            <UserPosts />
+          </div>
+        );
+      }
+
+      // Main Rendering in ReactDOM
+      ReactDOM.render(<ProfilePage />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
